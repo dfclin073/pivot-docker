@@ -1,0 +1,196 @@
+version: "3.8"
+services:
+
+  nc11:
+    image: nc11:test
+    build: nc11
+    ports:
+      - "11000-11010:11000-11010"
+    networks:
+      lane11:
+        ipv4_address: 172.16.11.11
+
+  socat12:
+    image: socat12:test
+    build: socat12
+    ports:
+      - "12000-12010:12000-12010"
+    networks:
+      lane12:
+        ipv4_address: 172.16.12.11
+
+  ssh13:
+    image: ssh13:test
+    build: ssh13
+    ports:
+      - "13000-13010:13000-13010"
+    networks:
+      lane13:
+        ipv4_address: 172.16.13.11
+
+  chisel14:
+    image: chisel14:test
+    build: chisel14
+    ports:
+      - "14000-14001:14000-14001"
+    networks:
+      lane14:
+        ipv4_address: 172.16.14.11
+
+  ssf15:
+    image: ssf15:test
+    build: ssf15
+    privileged: true
+    security_opt:
+      - apparmor=docker-mod
+    ports:
+      - "15000-15001:15000-15001"
+    networks:
+      lane15:
+        ipv4_address: 172.16.15.11
+
+  meterpreter16:
+    image: meterpreter16:test
+    build: meterpreter16
+    security_opt:
+      - apparmor=docker-msf
+    ports:
+      - "16000-16010:16000-16010"
+    user: 1001:1001
+    networks:
+      lane16:
+        ipv4_address: 172.16.16.11
+
+  proxychains17:
+    image: proxychains17:test
+    build: proxychains17
+    ports:
+      - "17000-17010:17000-17010"
+    networks:
+      lane17:
+        ipv4_address: 172.16.17.11
+
+  ssh21:                  
+    image: ssh21:test     
+    build: ssh21          
+    ports:                        
+      - "21000-21010:21000-21010" 
+    networks:                     
+      lane21:                     
+        ipv4_address: 172.16.21.11
+
+  nc22:
+    image: nc22:test
+    build: nc22
+    ports:
+      - "22000-22010:22000-22010"
+    networks:
+      lane22:
+        ipv4_address: 172.16.22.11
+
+  socat23:
+    image: socat23:test
+    build: socat23
+    ports:
+      - "23000-23010:23000-23010"
+    networks:
+      lane23:
+        ipv4_address: 172.16.23.11
+
+  chisel24:
+    image: chisel24:test
+    build: chisel24
+    ports:
+      - "24000-24010:24000-24010"
+    networks:
+      lane24:
+        ipv4_address: 172.16.24.11
+
+  ssf25:
+    image: ssf25:test
+    build: ssf25
+    privileged: true
+    security_opt:
+      - apparmor=docker-mod
+    ports:
+      - "25000-25010:25000-25010"
+    networks:
+      lane25:
+        ipv4_address: 172.16.25.11
+
+  meterpreter26:
+    image: meterpreter26:test
+    build: meterpreter26
+    security_opt:
+      - apparmor=docker-msf
+    ports:
+      - "26000-26010:26000-26010"
+    user: 1001:1001
+    networks:
+      lane26:
+        ipv4_address: 172.16.26.11
+
+networks:
+  lane11:
+    ipam:
+      config:
+        - subnet: 172.16.11.0/24
+  
+  lane12:
+    ipam:
+      config:
+        - subnet: 172.16.12.0/24
+  
+  lane13:
+    ipam:
+      config:
+        - subnet: 172.16.13.0/24
+  
+  lane14:
+    ipam:
+      config:
+        - subnet: 172.16.14.0/24
+  
+  lane15:
+    ipam:
+      config:
+        - subnet: 172.16.15.0/24
+  
+  lane16:
+    ipam:
+      config:
+        - subnet: 172.16.16.0/24
+  
+  lane17:
+    ipam:
+      config:
+        - subnet: 172.16.17.0/24
+  
+  lane21:
+    ipam:
+      config:
+        - subnet: 172.16.21.0/24
+  lane22:
+    ipam:
+      config:
+        - subnet: 172.16.22.0/24
+
+  lane23:
+    ipam:
+      config:
+        - subnet: 172.16.23.0/24
+
+  lane24:
+    ipam:
+      config:
+        - subnet: 172.16.24.0/24
+
+  lane25:
+    ipam:
+      config:
+        - subnet: 172.16.25.0/24
+
+  lane26:
+    ipam:
+      config:
+        - subnet: 172.16.26.0/24

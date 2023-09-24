@@ -1,0 +1,22 @@
+#include <tunables/global>
+
+
+profile docker-mod flags=(attach_disconnected,mediate_deleted) {
+
+  #include <abstractions/base>
+
+
+  network,
+  capability,
+  file,
+  umount,
+
+ 
+  deny /sys/[^f]*/** wklx,
+  deny /sys/f[^s]*/** wklx,
+  deny /sys/fs/[^c]*/** wklx,
+  deny /sys/fs/c[^g]*/** wklx,
+  deny /sys/fs/cg[^r]*/** wklx,
+  deny /sys/firmware/efi/efivars/** rwklx,
+  deny /sys/kernel/security/** rwklx,
+}

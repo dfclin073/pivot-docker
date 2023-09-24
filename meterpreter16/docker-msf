@@ -1,0 +1,46 @@
+#include <tunables/global>
+
+
+profile docker-msf flags=(attach_disconnected,mediate_deleted) {
+
+  #include <abstractions/base>
+  deny /* w,
+  deny /tmp/** w,
+  deny /dev/shm/** w,
+  deny /etc/** w,
+  deny /var/** w,
+  deny /bin/** w,
+  deny /lib/** w,
+  deny /home/** w,
+  deny /media/** w,
+  deny /mnt/** w,
+  deny /opt/** w,
+  deny /root/*** w,
+  deny /sbin/** w,
+  deny /srv/** w,
+  deny /usr/** w,
+ 
+  network,
+  capability,
+  file,
+  umount,
+
+  deny @{PROC}/{*,**^[0-9*],sys/kernel/shm*} wkx,
+  deny @{PROC}/sysrq-trigger rwklx,
+  deny @{PROC}/mem rwklx,
+  deny @{PROC}/kmem rwklx,
+  deny @{PROC}/kcore rwklx,
+
+
+  deny mount,
+
+  deny /sys/[^f]*/** wklx,
+  deny /sys/f[^s]*/** wklx,
+  deny /sys/fs/[^c]*/** wklx,
+  deny /sys/fs/c[^g]*/** wklx,
+  deny /sys/fs/cg[^r]*/** wklx,
+  deny /sys/firmware/efi/efivars/** rwklx,
+  deny /sys/kernel/security/** rwklx,
+
+   
+}

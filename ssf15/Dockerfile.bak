@@ -1,0 +1,20 @@
+FROM andrius/alpine-lshell
+
+RUN apk add --update --no-cache openssh 
+RUN apk add gcompat
+RUN adduser -h /home/user15 -s /usr/bin/lshell -D user15
+RUN echo -n 'user15:password' | chpasswd
+RUN echo -n 'root:password' | chpasswd
+ENTRYPOINT ["/entrypoint.sh"]
+EXPOSE 15000
+COPY entrypoint.sh /
+COPY checkconfig.py /usr/lib/python3.8/site-packages/lshell/checkconfig.py
+COPY motd /etc/motd
+COPY sshd_config /etc/ssh/sshd_config
+COPY lshell.conf /etc/lshell.conf
+RUN mkdir /usr/bin/ssf/
+RUN wget -q -O /tmp/ssf.zip https://github.com/securesocketfunneling/ssf/releases/download/3.0.0/ssf-linux-x86_64-3.0.0.zip
+RUN unzip /tmp/ssf.zip -d /tmp/
+RUN cp -r /tmp/ssf-linux-x86_64-3.0.0/* /usr/bin/ssf/
+RUN chmod 755 /usr/bin/ssf/ssfd
+
